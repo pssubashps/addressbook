@@ -2,12 +2,16 @@
 namespace Subash\Controller;
 use Subash\Common\ViewHelper;
 class BaseController {
-    public $myname = "Subash ass";
-    protected function render ($viewFile,$data =array ()) {
-        $view = new ViewHelper ();
-        require_once'views/'.$viewFile.'.php';
-    }
-
-    
-    
+	protected $view ;
+	
+	public function __construct () {
+		$this->view = new ViewHelper ();
+	}
+	protected function render ($viewFile,$data =array ()) {
+		$view = new ViewHelper ();
+		require_once'views/'.$viewFile.'.php';
+	}
+	
+	
+	
 }

@@ -7,12 +7,13 @@ use Subash\Common\ViewHelper;
 class Address extends BaseController {
 	private $city;
 	private $address;
-	private $view;
+	
 	private $errors = array ();
 	public function __construct()   {
+		parent::__construct ();
 		$this->city = new Cities ();
 		$this->address = new AddressBook;
-		$this->view = new ViewHelper;
+		
 	}
 	
 	public function index()  {
@@ -24,6 +25,8 @@ class Address extends BaseController {
 		if(!empty($post) && $this->validateAdress($post)) {
 			$ad = new AddressBook ();
 			$ad->add($post);
+			$this->view->setMessage ("Contact Added successfuly.");
+			header("location: ".$this->view->getSiteUrl()."index.php/address/index");exit;
 		}
 		$data['cities']  = $this->city->getAllCities ();
 		
@@ -48,7 +51,7 @@ class Address extends BaseController {
 			$this->view->setErrors($this->errors);
 			return false;
 		}
-		print "OK";exit;
+		
 		return true;
 	}
 	/**
