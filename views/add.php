@@ -2,6 +2,19 @@
 <div class="panel panel-default">
       <div class="panel-heading">Panel Heading </div>
       <div class="panel-body">
+      <?php
+      $errors =  $view->getErrors ();
+      if($errors) {
+        echo "<div class='alert alert-danger'>";
+        
+        foreach($errors as $err) {
+          echo "<p>".$err."</p>";
+        }
+        echo "</div>";
+      }
+      ?>
+      </div>
+      <div class="panel-body">
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
           <div class="form-group">
             <label for="email">Name:</label>
