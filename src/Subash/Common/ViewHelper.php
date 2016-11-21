@@ -2,11 +2,21 @@
 namespace Subash\Common;
 
 class ViewHelper {
-	
+
+	private $iniValues ;
+	public function __construct() {
+		
+		$this->iniValues = parse_ini_file(__DIR__."/../../../config/config.ini",true);
+		
+	}
+
+	public function getIniValues() {
+		return $this->iniValues ;
+	}
 	public  function getSiteUrl()
 	    {
-		//return 'http://localhost:8090/addressbook/';
-		return 'http://localhost/personal/addressbook/';
+		
+		return $this->iniValues['site_url'];
 	}
 	
 	public function setErrors ($errors) {

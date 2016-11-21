@@ -1,14 +1,16 @@
 <?php 
 namespace Subash\Models;
-
+use Subash\Common\ViewHelper;
 class Database  {
 	
 	
 	private $link ;
 	
 	public function __construct() {
+		$view = new  ViewHelper ();
 		try {
-			$this->link = new \PDO("mysql:host=localhost;dbname=address", 'root', 'root');
+			$iniValues = $view->getIniValues();
+			$this->link = new \PDO("mysql:host=".$iniValues['db.host'].";dbname=".$iniValues['db.name'], $iniValues['db.user'], $iniValues['db.password']);
 			// 			set the PDO error mode to exception
 									   $this->link->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			//echo "Connected successfully";
@@ -27,7 +29,7 @@ class Database  {
 		$sth = $this->link->prepare($query);
 		$sth->execute();
 		
-		$result = $sth->fetchAll();
+		$result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 		return $result;
 	}
 }

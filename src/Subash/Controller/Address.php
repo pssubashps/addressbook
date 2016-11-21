@@ -18,17 +18,17 @@ class Address extends BaseController {
     }
     
     public function index($request)  {
-		$currentPage = 1;
-		if(isset($request['page'])){
-			$currentPage = (int) $request['page'];
-			if($currentPage <=0) {
-				$currentPage = 1;
-			}
-		}
+        $currentPage = 1;
+        if(isset($request['page'])){
+            $currentPage = (int) $request['page'];
+            if($currentPage <=0) {
+                $currentPage = 1;
+            }
+        }
         $totalCount = $this->address->getTotalAddress ();
-		$perPage = 2;
+        $perPage = 2;
         $pagination = new Pagination ($perPage,$totalCount,$currentPage );
-		$start = $pagination->getStartPoint();
+        $start = $pagination->getStartPoint();
         $data['address_list']  = $this->address->getAddresses ($start,$perPage);
         $data['pagination'] = $pagination;
         $this->render('list',$data);
@@ -47,8 +47,26 @@ class Address extends BaseController {
         
     }
     
-    public function edit () {
+    public function edit ($request) {
+        //get by id and pass to
+        $data['address'] = $this->address->getAddressById($request['id']);
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data['address'] = $request;
+            if($this->validateAdress($request) ) {
+                $ad = new AddressBook ();
+                $ad->update($request);
+                $this->view->setMessage ("Contact Updated successfuly.");
+                //    header("location: ".$this->view->getSiteUrl()."index.php/address/index");exit;
+            }
+        }
         
+        $data['cities']  = $this->city->getAllCities ();
+        $this->render('edit',$data);
+    }
+    
+    public function xml() {
+        $result = $this->address->getAddresses (0,1000);
+        $this->array_to_xml($result, new \SimpleXMLElement('<root/>'))->asXML();
     }
     
     private function validateAdress($post) {
@@ -87,4 +105,21 @@ class Address extends BaseController {
     private function isAlphanumeric($value,$isSpaceAllowed = false) {
         
     }
+    
+    private function array_to_xml(array $arr, \SimpleXMLElement $xml)
+    {
+        //echo "<pre>";print_r($arr);exit;
+        foreach ($arr as $k => $v) {
+            is_array($v)
+            ? $this->array_to_xml($v, $xml->addChild("address"))
+            : $xml->addChild($k, $v);
+        }
+        header('Content-type: text/xml');
+        header('Content-Disposition: attachment; filename="text.xml"');
+        echo $xml;exit;
+    }
+    
+    
+    
+    
 }

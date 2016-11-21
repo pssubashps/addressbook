@@ -13,7 +13,7 @@ class BaseController {
 			$pagination = $data['pagination'];
 		}
 		
-		require_once'views/'.$viewFile.'.php';
+		require_once 'views/'.$viewFile.'.php';
 	}
 	
 	

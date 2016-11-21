@@ -1,6 +1,6 @@
 <?php require_once 'header.php' ?>
 <div class="panel panel-default">
-      <div class="panel-heading">Panel Heading </div>
+      <div class="panel-heading">Address List<span style="float:right"><a href="<?php echo $view->getSiteUrl().'index.php/address/xml'?>" target="__blank">Export to Xml</a></span></div>
       <div class="panel-body">
       <?php
       $errors =  $view->getErrors ();
@@ -32,11 +32,13 @@ if($message) {
         <th>Street</th>
         <th>Zipcode</th>
         <th>City</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
      <?php
      if(count($data['address_list']) > 0) {
+       
 	foreach($data['address_list'] as $ad) {
 		echo "<tr>";
 		echo "<td>";
@@ -53,6 +55,10 @@ if($message) {
 		
 		echo "<td>";
 		echo $ad['city_name'];
+		echo "</td>";
+
+    	echo "<td>";
+		echo "<a href='".$view->getSiteUrl()."index.php/address/edit/?id=".$ad['id']."'>Edit</a>";
 		echo "</td>";
 		
 		echo "</tr>";
