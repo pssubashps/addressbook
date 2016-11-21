@@ -5,7 +5,8 @@ class ViewHelper {
 	
 	public  function getSiteUrl()
 	    {
-		return 'http://localhost:8090/addressbook/';
+		//return 'http://localhost:8090/addressbook/';
+		return 'http://localhost/personal/addressbook/';
 	}
 	
 	public function setErrors ($errors) {

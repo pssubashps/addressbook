@@ -63,13 +63,16 @@ if($message) {
   </table>
       </div>
       <div class="panel-body">
-      <ul class="pagination">
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li class="disabled"><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-  </ul>
+      <?php
+        if($pagination) {
+          echo '<ul class="pagination">';
+          for($p= 1;$p<=$pagination->getTotalPages();$p++) {
+            echo '<li><a href="'.$view->getSiteUrl().'index.php/address/index/?page='.$p.'">'.$p.'</a></li>';
+          }
+           echo '</ul>';
+        }
+      ?>
+     
       </div>
     </div>
     <?php require_once 'footer.php' ?>
