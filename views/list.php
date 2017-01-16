@@ -3,7 +3,11 @@
 	<div class="panel-heading">
 		Address List<span style="float: right"><a
 			href="<?php echo $view->getSiteUrl().'index.php/address/xml'?>"
-			target="__blank">Export to Xml</a></span>
+			target="__blank">Export to Xml</a> | 
+			<a
+			href="<?php echo $view->getSiteUrl().'index.php/address/add'?>"
+			>Add New</a>
+			  </span>
 	</div>
 	<div class="panel-body">
       <?php

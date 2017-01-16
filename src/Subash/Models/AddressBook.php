@@ -27,7 +27,7 @@ class AddressBook extends Database {
 		$this->execute ( $query );
 	}
 	public function getAddresses($start, $limit) {
-		$query = "SELECT a.id,a.fullname,a.street,a.zipcode,c.city_name FROM address_book a LEFT JOIN cities c ON a.city = c.id LIMIT $start,$limit";
+		$query = "SELECT a.id,a.fullname,a.street,a.zipcode,c.city_name FROM address_book a LEFT JOIN cities c ON a.city = c.id order by id desc LIMIT $start,$limit ";
 		$result = $this->preparedExecute ( $query );
 		return $result;
 	}
@@ -38,7 +38,7 @@ class AddressBook extends Database {
 		return $result [0] ['totalCount'];
 	}
 	public function getAddressById($id) {
-		$query = "SELECT a.id,a.fullname,a.street,a.zipcode FROM address_book a where id=" . $id;
+		$query = "SELECT a.id,a.fullname,a.street,a.zipcode,a.city FROM address_book a where id=" . $id;
 		$result = $this->preparedExecute ( $query );
 		
 		return $result [0];

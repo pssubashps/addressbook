@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 18, 2016 at 05:47 PM
+-- Generation Time: Nov 21, 2016 at 11:11 PM
 -- Server version: 5.5.53-0ubuntu0.14.04.1
--- PHP Version: 5.6.23-1+deprecated+dontuse+deb.sury.org~trusty+1
+-- PHP Version: 5.5.9-1ubuntu4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -20,17 +20,20 @@ SET time_zone = "+00:00";
 -- Database: `address`
 --
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `cities`
+-- Dumping data for table `address_book`
 --
 
-CREATE TABLE IF NOT EXISTS `cities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `city_name` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48315 ;
+INSERT INTO `address_book` (`id`, `fullname`, `city`, `street`, `zipcode`) VALUES
+(1, 'John', 5, 'Street1', 123456),
+(2, 'Smith', 10, 'Mumbai', 345678),
+(3, 'Subash', 7, 'manjeri', 123434),
+(4, 'Amith', 20, 'ECity', 4562324),
+(8, 'Karthik', 11, 'Btm', 876567),
+(9, 'test', 10, 'test street', 123456),
+(10, 'Nitin', 20, 'Kochi', 123457),
+(11, 'Priya', 17, 'Chennai', 123458),
+(12, 'Adi', 7, 'Mysore', 123459);
 
 --
 -- Dumping data for table `cities`

@@ -42,7 +42,7 @@ class Address extends BaseController {
 			}
 		}
 		$totalCount = $this->address->getTotalAddress ();
-		$perPage = 2;
+		$perPage = 5;
 		$pagination = new Pagination ( $perPage, $totalCount, $currentPage );
 		$start = $pagination->getStartPoint ();
 		$data ['address_list'] = $this->address->getAddresses ( $start, $perPage );

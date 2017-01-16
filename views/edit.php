@@ -1,6 +1,6 @@
 <?php require_once 'header.php'?>
 <div class="panel panel-default">
-	<div class="panel-heading">Panel Heading</div>
+	<div class="panel-heading">Edit Contact</div>
 	<div class="panel-body">
       <?php
 						$errors = $view->getErrors ();
@@ -42,7 +42,11 @@
 					name="city" id="city">
             <?php
 												foreach ( $data ['cities'] as $c ) {
-													echo "<option value='" . $c ['id'] . "'>" . $c ['city_name'] . "</option>";
+													$selected = "";
+													if($c['id'] == $data['address']['city']) {
+														$selected = "selected='selected'";
+													}
+													echo "<option $selected value='" . $c ['id'] . "'>" . $c ['city_name'] . "</option>";
 												}
 												?>
             </select>
@@ -51,6 +55,8 @@
 				value="<?php echo $data['address']['id'];?>" />
 
 			<button type="submit" class="btn btn-default">Submit</button>
+
+			<a href="<?php echo $view->getSiteUrl()."index.php/address/index";?>">Cancel</a>
 		</form>
 	</div>
 </div>
